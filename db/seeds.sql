@@ -22,20 +22,20 @@ VALUES
     ("Line Worker", 48000, 5),
     ("Line Manager", 60000, 5);
 
-INSERT INTO employee (first_name, last_name, role_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
-    ("John", "Smith", 1),
-    ("John", "Doe", 2),
-    ("Jane", "Doe", 5),
-    ("Emma", "Smith", 3),
-    ("Billy", "Montague", 1),
-    ("Bob", "Sagget", 6),
-    ("Standard", "Phillips", 4),
-    ("Allison", "Lewis", 2),
-    ("Rack", "Nordstrom", 3),
-    ("John", "Frewin", 7),
-    ("Adrian", "Gupta", 7),
-    ("Uriel", "Llewelyn", 9),
-    ("Mariam", "Haggerty", 8),
-    ("Phylis", "Sanders", 6),
-    ("Sherlock", "Moriarty", 4);
+    ("John", "Smith", 1, NULL),
+    ("John", "Doe", 2, NULL),
+    ("Jane", "Doe", 5, NULL),
+    ("Emma", "Smith", 3, NULL),
+    ("Billy", "Montague", 1, NULL),
+    ("Bob", "Sagget", 6, NULL),
+    ("Standard", "Phillips", 4, NULL),
+    ("Allison", "Lewis", 2, NULL),
+    ("Rack", "Nordstrom", 3, NULL),
+    ("John", "Frewin", 7, NULL),
+    ("Adrian", "Gupta", 7, NULL),
+    ("Uriel", "Llewelyn", 9, NULL),
+    ("Mariam", "Haggerty", 8, NULL),
+    ("Phylis", "Sanders", 6, NULL),
+    ("Sherlock", "Moriarty", 4, 2);
