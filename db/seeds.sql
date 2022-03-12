@@ -21,3 +21,21 @@ VALUES
     ("Contract Attorney", 220000, 9),
     ("Line Worker", 48000, 5),
     ("Line Manager", 60000, 5);
+
+INSERT INTO employee (first_name, last_name, role_id)
+VALUES
+    ("John", "Smith", 1),
+    ("John", "Doe", 2),
+    ("Jane", "Doe", 5),
+    ("Emma", "Smith", 3),
+    ("Billy", "Montague", 1),
+    ("Bob", "Sagget", 6),
+    ("Standard", "Phillips", 4),
+    ("Allison", "Lewis", 2),
+    ("Rack", "Nordstrom", 3),
+    ("John", "Frewin", 7),
+    ("Adrian", "Gupta", 7),
+    ("Uriel", "Llewelyn", 9),
+    ("Mariam", "Haggerty", 8),
+    ("Phylis", "Sanders", 6),
+    ("Sherlock", "Moriarty", 4);
