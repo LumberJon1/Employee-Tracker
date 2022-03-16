@@ -33,7 +33,7 @@ const queryShowAllEmployees = `
     FROM employee
     LEFT JOIN role ON employee.role_id=role.id
     LEFT JOIN department ON role.department_id=department.id
-    ORDER BY job_title`;
+    ORDER BY first_name`;
 const queryAddDepartment = `
     INSERT INTO department (name)
     VALUES ("User Input")`;
@@ -48,21 +48,6 @@ const queryUpdateRole = `
     SET role_id = user-input
     WHERE id = user-input`;
 
-const queryTable = (sql) => {
-    let dataArray = [];
-    db.query(sql, (err, data) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            for (let i = 0; i < data.length; i++) {
-                console.log("data[i].Tables_in_employees: "+data[i].Tables_in_employees);
-                dataArray.push(data[i].Tables_in_employees);
-            };
-        }
-    })
-    return dataArray;
-}
 
 // Table prompts
 const viewAllDepartments = () => {
@@ -80,10 +65,28 @@ const viewAllDepartments = () => {
 
 viewAllRoles = () => {
 
+    db.query(queryShowAllRoles, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.table(data);
+            choicePrompt();
+        }
+    });
 };
 
 viewAllEmployees = () => {
 
+    db.query(queryShowAllEmployees, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.table(data);
+            choicePrompt();
+        }
+    });
 };
 
 addDepartment = () => {
