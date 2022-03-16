@@ -169,14 +169,116 @@ addRole = () => {
             });
         }
     });
-
 };
 
 addEmployee = () => {
 
+    db.query(queryShowAllEmployees, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.table(data);
+            return inquirer.prompt(
+                [
+                    {
+                        name: "first_name",
+                        type: "input",
+                        message: "Enter the employee's first name"
+                    },
+                    {
+                        name: "last_name",
+                        type: "input",
+                        message: "Enter the employee's last name"
+                    },
+                    {
+                        name: "role_id",
+                        type: "list",
+                        message: "Enter the role ID the new employee belongs to",
+                        choices: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        // Need to make this pull the actual ID soon
+                    },
+                    {
+                        name: "manager_id",
+                        type: "list",
+                        message: "Enter the ID of the new employee's manager",
+                        choices: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        // Need to make this pull the actual ID soon
+                    }
+                ]
+
+                ).then(answer => {
+
+                const {first_name, last_name, role_id, manager_id} = answer;
+                let sql = `
+                    INSERT INTO employee (first_name, last_name, role_id, manager_id)
+                    VALUES ("${first_name}", "${last_name}", "${role_id}", "${manager_id}")`;
+
+                db.query(sql, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        choicePrompt();
+                    }
+                })
+            });
+        }
+    });
 };
 
-updateRole = (employee) => {
+
+updateRole = () => {
+
+    db.query(`SELECT first_name, last_name, id FROM employee ORDER BY first_name`, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.table(data);
+            
+            // Push each employee to a new array of just their IDs and role_IDs
+            let employees = [];
+            for (let i = 0; i < data.length; i++) {
+                employees.push(data[i].id);
+            }
+
+            return inquirer.prompt(
+                [
+                    {
+                        name: "id",
+                        type: "list",
+                        message: "Enter the employee whose role will be updated",
+                        choices: employees
+                    },
+                    {
+                        name: "role_id",
+                        type: "list",
+                        message: "Select the role ID to update the employee with",
+                        choices: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    }
+                ]
+
+                ).then(answer => {
+
+                const {id, role_id} = answer;
+
+                let sql = `
+                    UPDATE employee
+                    SET role_id = ${role_id}
+                    WHERE id = ${id}`;
+
+                db.query(sql, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        choicePrompt();
+                    }
+                })
+            });
+        }
+    });
 
 };
                     
@@ -225,7 +327,7 @@ const choicePrompt = () => {
         }
         else if (answer.choice === "Update an Employee's Role") {
             console.log("User chose to update an employee's role.");
-            updateRole(employee);
+            updateRole();
         }
     });
 };
