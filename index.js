@@ -123,6 +123,53 @@ addDepartment = () => {
 
 addRole = () => {
 
+    db.query(queryShowAllRoles, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+
+            console.table(data);
+            return inquirer.prompt(
+                [
+                    {
+                        name: "title",
+                        type: "input",
+                        message: "Enter the title of the new role to add"
+                    },
+                    {
+                        name: "salary",
+                        type: "number",
+                        message: "Enter the annual salary the new role pays"
+                    },
+                    {
+                        name: "department_id",
+                        type: "list",
+                        message: "Enter the department ID the new role belongs to",
+                        choices: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        // Need to make this pull the actual departments soon
+                    }
+                ]
+
+                ).then(answer => {
+
+                const {title, salary, department_id} = answer;
+                let sql = `
+                    INSERT INTO role (title, salary, department_id)
+                    VALUES ("${title}", "${salary}", "${department_id}")`
+
+                db.query(sql, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        choicePrompt();
+                    }
+                })
+            });
+        }
+    });
+
 };
 
 addEmployee = () => {
