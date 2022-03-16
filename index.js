@@ -90,7 +90,35 @@ viewAllEmployees = () => {
 };
 
 addDepartment = () => {
+    db.query(queryShowAllDepartments, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.table(data);
+            return inquirer.prompt(
+                {
+                    name: "department",
+                    type: "input",
+                    message: "Enter the name of the new department to add"
+                }
+            ).then(answer => {
+                let newDepartment = answer.department;
+                let sql = `
+                    INSERT INTO department (name)
+                    VALUES ("${newDepartment}")`
 
+                db.query(sql, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        choicePrompt();
+                    }
+                })
+            });
+        }
+    });
 };
 
 addRole = () => {
