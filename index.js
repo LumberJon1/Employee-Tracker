@@ -1,14 +1,14 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
-const fs = require("fs");
+require("dotenv").config();
 
 //Connect to database
 const db = mysql.createConnection(
     {
         host: "localhost",
-        user: "root",
-        password: "#Handshake12117",
-        database: "employees"
+        user: process.env.DB_USER,
+        password: process.env.DB_PW,
+        database: process.env.DB_NAME
     }
 );
 
@@ -31,7 +31,7 @@ const queryShowAllEmployees = `
     FROM employee
     LEFT JOIN role ON employee.role_id=role.id
     LEFT JOIN department ON role.department_id=department.id
-    ORDER BY first_name`;
+    ORDER BY employee_id`;
 
 // Table prompts
 const viewAllDepartments = () => {
