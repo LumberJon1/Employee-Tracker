@@ -1,20 +1,39 @@
-# Employee-Tracker
+# Employee Tracker
 
-## Acceptance Criteria
-GIVEN a command-line application that accepts user input
-WHEN I start the application
-THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database
-WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database
+  ## Description
+  This program uses the Inquirer Node module to allow users to load and view employee databases, load and update data tables, and remove information for specific employees, roles, and departments.  It all operates through the Node command line.
+
+  ## License
+  [<img src="https://img.shields.io/badge/License-MIT-blue.svg?logo=LOGO">](LINK)
+
+  ## Table of Contents
+  1. [Installation](#Installation)
+  2. [Usage](#Usage)
+  3. [Contributing](#Contributing)
+  4. [Tests](#Tests)
+  5. [Technologies](#Technologies)
+  6. [Questions](#Questions)
+
+  ## Installation
+  To run the project, download the files and run "npm i" within Node to ensure all of the dependencies are up-to-date.  You will need to run the command "node index" to start the program from the command line, which will then run the Inquirer prompts.  To stop the program, ensure you are in the command like and hit Ctrl + C.  This will kill the process.
+
+  ## Usage
+  Use the program to view database tables and update information for employees
+
+  ## Contributing
+  Please do not contribute directly to this project.  If you have a suggestion, reach out to me directly.
+
+  ## Tests
+  No test modules were used to develop test suites in the development of this project.
+
+  ## Technologies
+  * Javascript
+  * SQL
+  * Node.js
+  * Inquirer
+  * MySql2
+
+  ## Questions
+  [Check out my GitHub](https://github.com/LumberJon1)
+  --or--
+  Email me at JWilliams12117@gmail.com
